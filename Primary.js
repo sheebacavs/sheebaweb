@@ -1,3 +1,56 @@
+function login()
+{
+	var username = document.getElementById("username").value;
+	var password = document.getElementById("password").value;
+	
+	if (username !== "" && password !== "")
+	{
+		// Initialize your xml http handler
+		var xmlhttp;
+
+		if (window.XMLHttpRequest)
+		{// code for IE7+, Firefox, Chrome, Opera, Safari
+			xmlhttp=new XMLHttpRequest();
+		}
+		else
+		{// code for IE6, IE5
+			xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		
+		// When the request comes back...
+		xmlhttp.onreadystatechange=function()
+		{
+			// If the request is 4 (request finished and response is ready) or 200 (OK)
+			if (xmlhttp.readyState==4 && xmlhttp.status==200)
+			{
+				var response = xmlhttp.responseText;
+				if (response == "FAIL")
+				{
+					document.getElementById("LogInFail").style.visibility = "visible";
+				}
+				else if (response !== "")
+				{
+					document.getElementById("LogInFail").style.visibility = "visible";
+					document.getElementById("LogInFail").innerHTML = response;
+				}
+				else
+				{
+					location.href = "Home.html";
+				}
+			}
+		}
+		
+		// Open the request, setting the method to POST, the page, and the asynchronous flag
+		var postdata = "username=" + username + "&password=" + password;
+		xmlhttp.open("POST","Login.php",true); // POST silently passes variables
+		
+		xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		xmlhttp.setRequestHeader("Content-length", postdata.length);
+		xmlhttp.setRequestHeader("Connection", "close");
+		xmlhttp.send(postdata); // Send your request
+	}
+}
+
 function populateDogs()
 {
 	// Initialize your xml http handler
@@ -114,7 +167,7 @@ function editDog(id)
 	var myWindow = window.open(link);
 }
 
-function populateBirthDate(date)
+function populateBirthDateOLD(date)
 {
 	//0000-00-00
 	var dateArray = date.split("-");

@@ -52,15 +52,19 @@
 				// $i++;
 			// }
 			
-			foreach ($row = mysql_fetch_assoc($result))
+			while ($row = mysql_fetch_assoc($result))
 			{
 				echo '
 				<div>
 					<h3>Edit Dog: '.$row['DOG_NAME'].'</h3><br />
 					<form>
 						<table>
-							<tr> <td>Name</td><td><input type="text" style="width:100%;" name="DOG_NAME" value="'.$row['DOG_NAME'].'"></td>  <td></td><td><input type="text" name="DOG_ID" value="'.$row['DOG_ID'].'" hidden></td> </tr>
-							<tr> <td>Sex</td><td><select style="width:100%;" name="SEX">';
+							<tr>
+								<td>Name</td><td><input type="text" style="width:100%;" name="DOG_NAME" value="'.$row['DOG_NAME'].'"></td>
+								<td></td><td><input type="text" name="DOG_ID" value="'.$row['DOG_ID'].'" hidden></td>
+							</tr>
+							<tr>
+								<td>Sex</td><td><select style="width:100%;" name="SEX">';
 								if ($row['SEX'] == "M")
 								{
 									echo '<option value="M" selected>Male</option>
@@ -71,13 +75,21 @@
 									echo '<option value="M">Male</option>
 									<option value="F" selected>Female</option>';
 								}
-								echo '</select></td>  <td>Title</td><td><input type="text" name="TITLE" value="'.$row['TITLE'].'"></td> </tr>
-							<tr> <td>Breeder</td><td><input type="text" style="width:100%;" name="BREEDER" value="'.$row['BREEDER'].'"></td>  <td>Owner</td><td><input type="text" name="OWNER" value="'.$row['OWNER'].'"></td> </tr>
-							<tr> <td>Birth Date</td><td> Y <select id="BIRTH_DATE_Y" name="BIRTH_DATE_Y"></select> M <select id="BIRTH_DATE_M" name="BIRTH_DATE_M"></select> D <select id="BIRTH_DATE_D" name="BIRTH_DATE_D"></select></td>
-							<td>Registration Number</td><td><input type="text" name="REGISTRATION_NB" value="'.$row['REGISTRATION_NB'].'"></td> </tr>
-							<tr> <td>Sire</td><td><select style="width:100%;" name="SIRE_ID">
+								echo '</select></td>
+								<td>Title</td><td><input type="text" style="width:100%;" name="TITLE" value="'.$row['TITLE'].'"></td>
+							</tr>
+							<tr>
+								<td>Breeder</td><td><input type="text" style="width:100%;" name="BREEDER" value="'.$row['BREEDER'].'"></td>
+								<td>Owner</td><td><input type="text" style="width:100%;" name="OWNER" value="'.$row['OWNER'].'"></td>
+							</tr>
+							<tr>
+								<td>Birth Date</td><td><input type="date" style="width:100%;" value="'.$row['BIRTH_DATE'].'"></td>
+								<td>Registration Number</td><td><input type="text" style="width:100%;" name="REGISTRATION_NB" value="'.$row['REGISTRATION_NB'].'"></td>
+							</tr>
+							<tr>
+								<td>Sire</td><td><select style="width:100%;" name="SIRE_ID">
 								<option value="0"></option>';
-								foreach ($sire = mysql_fetch_assoc($resultM))
+								while ($sire = mysql_fetch_assoc($resultM))
 								{
 									echo '<option value="'.$sire['DOG_ID'].'"';
 									
@@ -88,27 +100,25 @@
 									
 									echo '>'.$sire['DOG_NAME'].'</option>';
 								}
-							echo '</select></td>  <td>Dam</td><td><select style="width:100%;" name="DAM_ID">
-								<option value="0"></option>';
-								foreach ($dam = mysql_fetch_assoc($resultF))
-								{
-									echo '<option value="'.$dam['DOG_ID'].'"';
-									
-									if ($row['DAM_ID'] == $dam['DOG_ID'])
+								echo '</select></td>
+									<td>Dam</td><td><select style="width:100%;" name="DAM_ID">
+									<option value="0"></option>';
+									while ($dam = mysql_fetch_assoc($resultF))
 									{
-										echo ' selected';
+										echo '<option value="'.$dam['DOG_ID'].'"';
+										
+										if ($row['DAM_ID'] == $dam['DOG_ID'])
+										{
+											echo ' selected';
+										}
+										
+										echo '>'.$dam['DOG_NAME'].'</option>';
 									}
-									
-									echo '>'.$dam['DOG_NAME'].'</option>';
-								}
-							echo '</select></td> </tr>
+								echo '</select></td>
+							</tr>
 						</table>
 					</form>
-				</div>
-				
-				<script>
-					populateBirthDate("'.$row['BIRTH_DATE'].'");
-				</script>';
+				</div>';
 			}
 		?>
 		</div>

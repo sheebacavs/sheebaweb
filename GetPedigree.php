@@ -239,7 +239,7 @@
 				echo ' style="align:center;"';
 			}
 			
-			echo '>'.$split[1].'</td>
+			echo '><p onclick="editDog('.$baseDogID.')">'.$split[1].'</p></td>
 			<td rowspan="8"'; // Second column of the first row -- spans 8 rows
 			$split = explode('|', $sire1Name);
 			
@@ -248,7 +248,7 @@
 				echo ' style="color:red;"';
 			}
 			
-			echo '>'.$split[1].'</td>
+			echo '><p onclick="editDog('.$sire1.')">'.$split[1].'</p></td>
 			<td rowspan="4"';
 			$split = explode('|', $sire2aName);
 			

@@ -21,7 +21,7 @@
 	// create your form and select box  -- your action calls the javascript function getPedigree()
 	echo "
 	<form action=\"javascript:search()\">
-		<input id=\"searchBox\" type=\"text\">
+		<input id=\"searchBox\" type=\"search\">
 		<input type=\"submit\" value=\"Search\">
 	</form>
 	

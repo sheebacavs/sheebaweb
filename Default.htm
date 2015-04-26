@@ -1,23 +1,16 @@
 <html>
 	<head>
 		<script src="Primary.js"></script> <!-- Reference your javascript file -->
-		<style>
-			td {
-					text-align:center;
-					font-size:10pt;
-					padding:2px;
-				}
-		</style>
 	</head>
 	<body>
 		<h1>Sheeba Cavaliers Pedigree</h1>
 
 		<div id="content">
-			<!-- This is the button used to manually call populateDogs()
-			<input type="submit" value="Populate Dogs" onclick="javascript:populateDogs()">-->
-			<script> //This is the script used to automatically call populateDogs() on page load
-					populateDogs();
-			</script>
+			<form action="javascript:login()">
+				Username <input type="text" id="username"><br /><br />
+				Password <input type="password" id="password"><br /><br />
+				<input type="submit" value="Log In" > <div id="LogInFail" style="visibility:hidden;display:inline;color:red;">Username or password is incorrect.</div>
+			</form>
 		</div>
 	</body>
 </html>
